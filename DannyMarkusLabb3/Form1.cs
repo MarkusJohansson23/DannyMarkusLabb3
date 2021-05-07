@@ -32,6 +32,19 @@ namespace DannyMarkusLabb3
 
         }
 
+        private void AddArtistsButton_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void EditArtistsButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void RemoveArtistsButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
