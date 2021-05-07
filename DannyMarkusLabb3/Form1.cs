@@ -17,14 +17,21 @@ namespace DannyMarkusLabb3
             InitializeComponent();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void RemovePlaylistButton_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void RemoveButton_Click(object sender, EventArgs e)
+        private void AddPlaylistButton_Click(object sender, EventArgs e)
         {
 
         }
+
+        private void EditPlaylistButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

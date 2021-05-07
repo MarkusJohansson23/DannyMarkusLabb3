@@ -29,52 +29,54 @@ namespace DannyMarkusLabb3
         /// </summary>
         private void InitializeComponent()
         {
-            this.AddButton = new System.Windows.Forms.Button();
-            this.RemoveButton = new System.Windows.Forms.Button();
-            this.ModifyButton = new System.Windows.Forms.Button();
+            this.AddPlaylistButton = new System.Windows.Forms.Button();
+            this.RemovePlaylistButton = new System.Windows.Forms.Button();
+            this.EditPlaylistButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.AddArtistsButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.EditArtistsButton = new System.Windows.Forms.Button();
+            this.RemoveArtistsButton = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // AddButton
+            // AddPlaylistButton
             // 
-            this.AddButton.Location = new System.Drawing.Point(7, 57);
-            this.AddButton.Name = "AddButton";
-            this.AddButton.Size = new System.Drawing.Size(109, 23);
-            this.AddButton.TabIndex = 0;
-            this.AddButton.Text = "Add Playlist";
-            this.AddButton.UseVisualStyleBackColor = true;
+            this.AddPlaylistButton.Location = new System.Drawing.Point(7, 57);
+            this.AddPlaylistButton.Name = "AddPlaylistButton";
+            this.AddPlaylistButton.Size = new System.Drawing.Size(109, 23);
+            this.AddPlaylistButton.TabIndex = 0;
+            this.AddPlaylistButton.Text = "Add Playlist";
+            this.AddPlaylistButton.UseVisualStyleBackColor = true;
+            this.AddPlaylistButton.Click += new System.EventHandler(this.AddPlaylistButton_Click);
             // 
-            // RemoveButton
+            // RemovePlaylistButton
             // 
-            this.RemoveButton.Location = new System.Drawing.Point(7, 115);
-            this.RemoveButton.Name = "RemoveButton";
-            this.RemoveButton.Size = new System.Drawing.Size(109, 23);
-            this.RemoveButton.TabIndex = 1;
-            this.RemoveButton.Text = "Remove Playlist";
-            this.RemoveButton.UseVisualStyleBackColor = true;
-            this.RemoveButton.Click += new System.EventHandler(this.RemoveButton_Click);
+            this.RemovePlaylistButton.Location = new System.Drawing.Point(7, 115);
+            this.RemovePlaylistButton.Name = "RemovePlaylistButton";
+            this.RemovePlaylistButton.Size = new System.Drawing.Size(109, 23);
+            this.RemovePlaylistButton.TabIndex = 1;
+            this.RemovePlaylistButton.Text = "Remove Playlist";
+            this.RemovePlaylistButton.UseVisualStyleBackColor = true;
+            this.RemovePlaylistButton.Click += new System.EventHandler(this.RemovePlaylistButton_Click);
             // 
-            // ModifyButton
+            // EditPlaylistButton
             // 
-            this.ModifyButton.Location = new System.Drawing.Point(7, 86);
-            this.ModifyButton.Name = "ModifyButton";
-            this.ModifyButton.Size = new System.Drawing.Size(109, 23);
-            this.ModifyButton.TabIndex = 2;
-            this.ModifyButton.Text = "Edit Playlist";
-            this.ModifyButton.UseVisualStyleBackColor = true;
+            this.EditPlaylistButton.Location = new System.Drawing.Point(7, 86);
+            this.EditPlaylistButton.Name = "EditPlaylistButton";
+            this.EditPlaylistButton.Size = new System.Drawing.Size(109, 23);
+            this.EditPlaylistButton.TabIndex = 2;
+            this.EditPlaylistButton.Text = "Edit Playlist";
+            this.EditPlaylistButton.UseVisualStyleBackColor = true;
+            this.EditPlaylistButton.Click += new System.EventHandler(this.EditPlaylistButton_Click);
             // 
             // groupBox1
             // 
@@ -125,14 +127,14 @@ namespace DannyMarkusLabb3
             this.listBox1.Size = new System.Drawing.Size(567, 499);
             this.listBox1.TabIndex = 0;
             // 
-            // button1
+            // AddArtistsButton
             // 
-            this.button1.Location = new System.Drawing.Point(7, 232);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(109, 60);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Add artist, albums and tracks";
-            this.button1.UseVisualStyleBackColor = true;
+            this.AddArtistsButton.Location = new System.Drawing.Point(7, 232);
+            this.AddArtistsButton.Name = "AddArtistsButton";
+            this.AddArtistsButton.Size = new System.Drawing.Size(109, 60);
+            this.AddArtistsButton.TabIndex = 6;
+            this.AddArtistsButton.Text = "Add artists, albums and tracks";
+            this.AddArtistsButton.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -160,43 +162,42 @@ namespace DannyMarkusLabb3
             this.label3.Size = new System.Drawing.Size(38, 15);
             this.label3.TabIndex = 9;
             this.label3.Text = "tracks";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // button2
+            // EditArtistsButton
             // 
-            this.button2.Location = new System.Drawing.Point(7, 298);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(109, 62);
-            this.button2.TabIndex = 10;
-            this.button2.Text = "Edit artists, albums and tracks";
-            this.button2.UseVisualStyleBackColor = true;
+            this.EditArtistsButton.Location = new System.Drawing.Point(7, 298);
+            this.EditArtistsButton.Name = "EditArtistsButton";
+            this.EditArtistsButton.Size = new System.Drawing.Size(109, 62);
+            this.EditArtistsButton.TabIndex = 10;
+            this.EditArtistsButton.Text = "Edit artists, albums and tracks";
+            this.EditArtistsButton.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // RemoveArtistsButton
             // 
-            this.button3.Location = new System.Drawing.Point(7, 366);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(109, 60);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "Remove artists, albums and tracks";
-            this.button3.UseVisualStyleBackColor = true;
+            this.RemoveArtistsButton.Location = new System.Drawing.Point(7, 366);
+            this.RemoveArtistsButton.Name = "RemoveArtistsButton";
+            this.RemoveArtistsButton.Size = new System.Drawing.Size(109, 60);
+            this.RemoveArtistsButton.TabIndex = 11;
+            this.RemoveArtistsButton.Text = "Remove artists, albums and tracks";
+            this.RemoveArtistsButton.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 581);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.RemoveArtistsButton);
+            this.Controls.Add(this.EditArtistsButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.AddArtistsButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.ModifyButton);
-            this.Controls.Add(this.RemoveButton);
-            this.Controls.Add(this.AddButton);
+            this.Controls.Add(this.EditPlaylistButton);
+            this.Controls.Add(this.RemovePlaylistButton);
+            this.Controls.Add(this.AddPlaylistButton);
             this.Name = "Form1";
             this.Text = "Form1";
             this.groupBox1.ResumeLayout(false);
@@ -209,20 +210,20 @@ namespace DannyMarkusLabb3
 
         #endregion
 
-        private System.Windows.Forms.Button AddButton;
-        private System.Windows.Forms.Button RemoveButton;
-        private System.Windows.Forms.Button ModifyButton;
+        private System.Windows.Forms.Button AddPlaylistButton;
+        private System.Windows.Forms.Button RemovePlaylistButton;
+        private System.Windows.Forms.Button EditPlaylistButton;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button AddArtistsButton;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button EditArtistsButton;
+        private System.Windows.Forms.Button RemoveArtistsButton;
     }
 }
 
