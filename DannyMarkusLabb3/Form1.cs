@@ -24,17 +24,17 @@ namespace DannyMarkusLabb3
 
         private void AddPlaylistButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void EditPlaylistButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void AddArtistsButton_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void EditArtistsButton_Click(object sender, EventArgs e)

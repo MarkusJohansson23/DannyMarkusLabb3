@@ -9,5 +9,9 @@ namespace DannyMarkusLabb3.Models
     {
         public int PlaylistId { get; set; }
         public string Name { get; set; }
+        public static void AddPlaylist()
+        {
+
+        }
     }
 }
