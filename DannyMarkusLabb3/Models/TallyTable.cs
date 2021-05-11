@@ -5,9 +5,8 @@ using System.Collections.Generic;
 
 namespace DannyMarkusLabb3.Models
 {
-    public partial class Playlist
+    public partial class TallyTable
     {
-        public int PlaylistId { get; set; }
-        public string Name { get; set; }
+        public long N { get; set; }
     }
 }

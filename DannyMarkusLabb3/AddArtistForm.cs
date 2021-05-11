@@ -21,18 +21,18 @@ namespace DannyMarkusLabb3
 
         private void AddArtistForm_Load(object sender, EventArgs e)
         {
-            using(var context = new everyloopContext())
-            {
-                try
-                {
-                    dataGridView1.DataSource = context.Artists.ToList();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(Convert.ToString(ex));
-                }
+            //using(var context = new everyloopContext())
+            //{
+            //    try
+            //    {
+            //        dataGridView1.DataSource = context.Artists.ToList();
+            //    }
+            //    catch (Exception ex)
+            //    {
+            //        MessageBox.Show(Convert.ToString(ex));
+            //    }
                 
-            }
+            //}
             
         }
 
