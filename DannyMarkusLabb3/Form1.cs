@@ -24,7 +24,7 @@ namespace DannyMarkusLabb3
 
         private void AddPlaylistButton_Click(object sender, EventArgs e)
         {
-            
+            PlaylistEdit.AddPlaylist();
         }
 
         private void EditPlaylistButton_Click(object sender, EventArgs e)
@@ -34,7 +34,7 @@ namespace DannyMarkusLabb3
 
         private void AddArtistsButton_Click(object sender, EventArgs e)
         {
-            
+            ArtistEdit.AddArtist();
         }
 
         private void EditArtistsButton_Click(object sender, EventArgs e)

@@ -15,7 +15,8 @@ namespace DannyMarkusLabb3
         }
         public static void AddArtist()
         {
-
+            var formPopup = new AddArtistForm();
+            formPopup.Show();
         }
         public static void EditArtist()
         {

@@ -15,7 +15,8 @@ namespace DannyMarkusLabb3
         }
         public static void AddPlaylist()
         {
-
+            var formPopup = new PlaylistForm();
+            formPopup.Show();
         }
         public static void EditPlaylist()
         {
