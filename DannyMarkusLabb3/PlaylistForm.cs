@@ -37,8 +37,6 @@ namespace DannyMarkusLabb3
 
         private void ViewPlaylistsbutton_Click(object sender, EventArgs e)
         {
-            string connectionString = @"Server=DESKTOP-JP6OAR1\\SQLEXPRESS;Database=everyloop;Trusted_Connection=True";
-
             using (SqlConnection sqlConnection = new SqlConnection(connectionString))
             {
                 sqlConnection.Open();
