@@ -29,40 +29,44 @@ namespace DannyMarkusLabb3
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.DGVArtistForm = new System.Windows.Forms.DataGridView();
+            this.ArtistTextBox = new System.Windows.Forms.TextBox();
+            this.AlbumTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.GenreTextBox = new System.Windows.Forms.TextBox();
+            this.AddArtistButton = new System.Windows.Forms.Button();
+            this.SearchButton = new System.Windows.Forms.Button();
+            this.UpdateArtistButton = new System.Windows.Forms.Button();
+            this.RemoveArtistButton = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVArtistForm)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // DGVArtistForm
             // 
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(2, 162);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(797, 287);
-            this.dataGridView1.TabIndex = 0;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.DGVArtistForm.AllowUserToDeleteRows = false;
+            this.DGVArtistForm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DGVArtistForm.Location = new System.Drawing.Point(2, 162);
+            this.DGVArtistForm.Name = "DGVArtistForm";
+            this.DGVArtistForm.ReadOnly = true;
+            this.DGVArtistForm.Size = new System.Drawing.Size(797, 287);
+            this.DGVArtistForm.TabIndex = 0;
+            this.DGVArtistForm.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // textBox1
+            // ArtistTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(70, 50);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(134, 23);
-            this.textBox1.TabIndex = 1;
+            this.ArtistTextBox.Location = new System.Drawing.Point(70, 50);
+            this.ArtistTextBox.Name = "ArtistTextBox";
+            this.ArtistTextBox.Size = new System.Drawing.Size(134, 23);
+            this.ArtistTextBox.TabIndex = 1;
             // 
-            // textBox2
+            // AlbumTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(70, 79);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(134, 23);
-            this.textBox2.TabIndex = 2;
+            this.AlbumTextBox.Location = new System.Drawing.Point(70, 79);
+            this.AlbumTextBox.Name = "AlbumTextBox";
+            this.AlbumTextBox.Size = new System.Drawing.Size(134, 23);
+            this.AlbumTextBox.TabIndex = 2;
             // 
             // label1
             // 
@@ -91,29 +95,73 @@ namespace DannyMarkusLabb3
             this.label3.TabIndex = 5;
             this.label3.Text = "Genre";
             // 
-            // textBox3
+            // GenreTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(70, 108);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(134, 23);
-            this.textBox3.TabIndex = 6;
+            this.GenreTextBox.Location = new System.Drawing.Point(70, 108);
+            this.GenreTextBox.Name = "GenreTextBox";
+            this.GenreTextBox.Size = new System.Drawing.Size(134, 23);
+            this.GenreTextBox.TabIndex = 6;
+            // 
+            // AddArtistButton
+            // 
+            this.AddArtistButton.Location = new System.Drawing.Point(295, 79);
+            this.AddArtistButton.Name = "AddArtistButton";
+            this.AddArtistButton.Size = new System.Drawing.Size(75, 23);
+            this.AddArtistButton.TabIndex = 7;
+            this.AddArtistButton.Text = "Add";
+            this.AddArtistButton.UseVisualStyleBackColor = true;
+            this.AddArtistButton.Click += new System.EventHandler(this.AddArtistButton_Click);
+            // 
+            // SearchButton
+            // 
+            this.SearchButton.Location = new System.Drawing.Point(295, 21);
+            this.SearchButton.Name = "SearchButton";
+            this.SearchButton.Size = new System.Drawing.Size(75, 23);
+            this.SearchButton.TabIndex = 8;
+            this.SearchButton.Text = "Search";
+            this.SearchButton.UseVisualStyleBackColor = true;
+            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
+            // 
+            // UpdateArtistButton
+            // 
+            this.UpdateArtistButton.Location = new System.Drawing.Point(295, 50);
+            this.UpdateArtistButton.Name = "UpdateArtistButton";
+            this.UpdateArtistButton.Size = new System.Drawing.Size(75, 23);
+            this.UpdateArtistButton.TabIndex = 9;
+            this.UpdateArtistButton.Text = "Update";
+            this.UpdateArtistButton.UseVisualStyleBackColor = true;
+            this.UpdateArtistButton.Click += new System.EventHandler(this.UpdateArtistButton_Click);
+            // 
+            // RemoveArtistButton
+            // 
+            this.RemoveArtistButton.Location = new System.Drawing.Point(295, 108);
+            this.RemoveArtistButton.Name = "RemoveArtistButton";
+            this.RemoveArtistButton.Size = new System.Drawing.Size(75, 23);
+            this.RemoveArtistButton.TabIndex = 10;
+            this.RemoveArtistButton.Text = "Remove";
+            this.RemoveArtistButton.UseVisualStyleBackColor = true;
+            this.RemoveArtistButton.Click += new System.EventHandler(this.RemoveArtistButton_Click);
             // 
             // AddArtistForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.RemoveArtistButton);
+            this.Controls.Add(this.UpdateArtistButton);
+            this.Controls.Add(this.SearchButton);
+            this.Controls.Add(this.AddArtistButton);
+            this.Controls.Add(this.GenreTextBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.AlbumTextBox);
+            this.Controls.Add(this.ArtistTextBox);
+            this.Controls.Add(this.DGVArtistForm);
             this.Name = "AddArtistForm";
             this.Text = "AddArtistForm";
             this.Load += new System.EventHandler(this.AddArtistForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DGVArtistForm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -121,12 +169,16 @@ namespace DannyMarkusLabb3
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.DataGridView DGVArtistForm;
+        private System.Windows.Forms.TextBox ArtistTextBox;
+        private System.Windows.Forms.TextBox AlbumTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox GenreTextBox;
+        private System.Windows.Forms.Button AddArtistButton;
+        private System.Windows.Forms.Button SearchButton;
+        private System.Windows.Forms.Button UpdateArtistButton;
+        private System.Windows.Forms.Button RemoveArtistButton;
     }
 }

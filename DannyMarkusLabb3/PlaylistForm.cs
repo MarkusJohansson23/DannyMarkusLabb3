@@ -21,11 +21,11 @@ namespace DannyMarkusLabb3
 
         private void PlaylistForm_Load(object sender, EventArgs e)
         {
-            using (var context = new everyloopContext())
+            using (var db = new everyloopContext())
             {
                 try
                 {
-                    DGVPlaylistForm.DataSource = context.Playlists.ToList();
+                    DGVPlaylistForm.DataSource = db.Playlists.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -35,6 +35,11 @@ namespace DannyMarkusLabb3
         }
 
         private void ViewPlaylistsbutton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddPlaylistButton_Click(object sender, EventArgs e)
         {
 
         }
