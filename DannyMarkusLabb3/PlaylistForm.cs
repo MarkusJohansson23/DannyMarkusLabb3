@@ -25,18 +25,16 @@ namespace DannyMarkusLabb3
             {
                 try
                 {
-                    DGVPlaylistForm.DataSource = db.Playlists.ToList();
+                    CurrentPlaylistBox.DataSource = db.Playlists.ToList();
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show(Convert.ToString(ex));
                 }
                 CurrentPlaylistBox.Text = "Playlist";
-                var numberOfPlaylists = db.Playlists.Count();
-                for (int i = 0; i < numberOfPlaylists; i++)
-                {
-                    
-                }
+                CurrentPlaylistBox.DisplayMember = "Name";
+                CurrentPlaylistBox.ValueMember = "PlaylistId";
+               
             }
         }
 
@@ -133,6 +131,28 @@ namespace DannyMarkusLabb3
 
         private void ViewTracksButton_Click(object sender, EventArgs e)
         {
+            var id = Convert.ToInt32(CurrentPlaylistBox.SelectedValue);
+            
+            using (var context = new everyloopContext()) 
+            {
+                var list = context.Playlists.Join(context.PlaylistTracks, entry => entry.PlaylistId,
+                    entry2 => entry2.PlaylistId, (entry, entry2) => new
+                    {
+                        entry,
+                        entry2
+                    }).Join(context.Tracks, p => p.entry2.TrackId, e => e.TrackId,
+                    (p, e) => new
+                    {
+                        p,
+                        e
+
+
+                    }).Where(x => x.p.entry.PlaylistId == id).ToList();
+                   
+                
+
+            }
+
 
         }
 
@@ -151,10 +171,6 @@ namespace DannyMarkusLabb3
 
         }
 
-        private void CurrentPlaylistBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            List<Playlist> playlists = new List<Playlist>();
-
-        }
+        
     }
 }

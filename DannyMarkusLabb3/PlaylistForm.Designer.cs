@@ -122,7 +122,7 @@ namespace DannyMarkusLabb3
             this.CurrentPlaylistBox.Name = "CurrentPlaylistBox";
             this.CurrentPlaylistBox.Size = new System.Drawing.Size(121, 23);
             this.CurrentPlaylistBox.TabIndex = 15;
-            this.CurrentPlaylistBox.SelectedIndexChanged += new System.EventHandler(this.CurrentPlaylistBox_SelectedIndexChanged);
+            
             // 
             // DeletePlaylistButton
             // 
