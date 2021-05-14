@@ -31,6 +31,12 @@ namespace DannyMarkusLabb3
                 {
                     MessageBox.Show(Convert.ToString(ex));
                 }
+                CurrentPlaylistBox.Text = "Playlist";
+                var numberOfPlaylists = db.Playlists.Count();
+                for (int i = 0; i < numberOfPlaylists; i++)
+                {
+                    
+                }
             }
         }
 
@@ -53,7 +59,14 @@ namespace DannyMarkusLabb3
         {
             using (var db = new everyloopContext())
             {
-
+                var playlistId = db.Playlists.Count() + 1;
+                var newPlaylist = new Playlist()
+                {
+                    PlaylistId = playlistId,
+                    Name = NewPlaylistNameBox.Text,
+                };
+                db.Add(newPlaylist);
+                db.SaveChanges();
             }
         }
 
@@ -104,7 +117,18 @@ namespace DannyMarkusLabb3
 
         private void DeletePlaylistButton_Click(object sender, EventArgs e)
         {
-
+            using (var db = new everyloopContext())
+            {
+                
+                //var playlistId = db.Playlists.Count() + 1;
+                //var newPlaylist = new Playlist()
+                //{
+                //    PlaylistId = playlistId,
+                //    Name = NewPlaylistNameBox.Text,
+                //};
+                //db.Add(newPlaylist);
+                //db.SaveChanges();
+            }
         }
 
         private void ViewTracksButton_Click(object sender, EventArgs e)
@@ -124,6 +148,12 @@ namespace DannyMarkusLabb3
 
         private void SearchTracksButton_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void CurrentPlaylistBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            List<Playlist> playlists = new List<Playlist>();
 
         }
     }

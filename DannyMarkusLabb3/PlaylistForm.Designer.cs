@@ -40,14 +40,14 @@ namespace DannyMarkusLabb3
             this.NewPlaylistNameBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.TrackPlaylistBox = new System.Windows.Forms.ComboBox();
             this.AddTrackButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.ComposerNameBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TrackNameBox = new System.Windows.Forms.TextBox();
-            this.TrackPlaylistBox = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.SearchTracksButton = new System.Windows.Forms.Button();
             this.SearchTracksBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -122,6 +122,7 @@ namespace DannyMarkusLabb3
             this.CurrentPlaylistBox.Name = "CurrentPlaylistBox";
             this.CurrentPlaylistBox.Size = new System.Drawing.Size(121, 23);
             this.CurrentPlaylistBox.TabIndex = 15;
+            this.CurrentPlaylistBox.SelectedIndexChanged += new System.EventHandler(this.CurrentPlaylistBox_SelectedIndexChanged);
             // 
             // DeletePlaylistButton
             // 
@@ -165,6 +166,23 @@ namespace DannyMarkusLabb3
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Track to add";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 83);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(44, 15);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Playlist";
+            // 
+            // TrackPlaylistBox
+            // 
+            this.TrackPlaylistBox.FormattingEnabled = true;
+            this.TrackPlaylistBox.Location = new System.Drawing.Point(6, 104);
+            this.TrackPlaylistBox.Name = "TrackPlaylistBox";
+            this.TrackPlaylistBox.Size = new System.Drawing.Size(121, 23);
+            this.TrackPlaylistBox.TabIndex = 6;
             // 
             // AddTrackButton
             // 
@@ -217,23 +235,6 @@ namespace DannyMarkusLabb3
             this.TrackNameBox.Name = "TrackNameBox";
             this.TrackNameBox.Size = new System.Drawing.Size(100, 23);
             this.TrackNameBox.TabIndex = 0;
-            // 
-            // TrackPlaylistBox
-            // 
-            this.TrackPlaylistBox.FormattingEnabled = true;
-            this.TrackPlaylistBox.Location = new System.Drawing.Point(6, 104);
-            this.TrackPlaylistBox.Name = "TrackPlaylistBox";
-            this.TrackPlaylistBox.Size = new System.Drawing.Size(121, 23);
-            this.TrackPlaylistBox.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(7, 83);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 15);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Playlist";
             // 
             // SearchTracksButton
             // 
