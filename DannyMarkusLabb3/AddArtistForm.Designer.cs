@@ -120,7 +120,6 @@ namespace DannyMarkusLabb3
             this.SearchButton.TabIndex = 8;
             this.SearchButton.Text = "Search";
             this.SearchButton.UseVisualStyleBackColor = true;
-            this.SearchButton.Click += new System.EventHandler(this.SearchButton_Click);
             // 
             // UpdateArtistButton
             // 
@@ -130,7 +129,6 @@ namespace DannyMarkusLabb3
             this.UpdateArtistButton.TabIndex = 9;
             this.UpdateArtistButton.Text = "Update";
             this.UpdateArtistButton.UseVisualStyleBackColor = true;
-            this.UpdateArtistButton.Click += new System.EventHandler(this.UpdateArtistButton_Click);
             // 
             // RemoveArtistButton
             // 
@@ -140,7 +138,6 @@ namespace DannyMarkusLabb3
             this.RemoveArtistButton.TabIndex = 10;
             this.RemoveArtistButton.Text = "Remove";
             this.RemoveArtistButton.UseVisualStyleBackColor = true;
-            this.RemoveArtistButton.Click += new System.EventHandler(this.RemoveArtistButton_Click);
             // 
             // AddArtistForm
             // 

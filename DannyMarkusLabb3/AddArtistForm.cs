@@ -71,13 +71,14 @@ namespace DannyMarkusLabb3
                                   Genre = g.Name
                               }).ToList();
 
-                if (ArtistTextBox.Text != null || AlbumTextBox.Text != null || GenreTextBox.Text != null)
+                if (ArtistTextBox.Text != null && AlbumTextBox.Text != null && GenreTextBox.Text != null)
                 {
                     var artistPkId = db.Artists.Count();
                     var albumPkId = db.Albums.Count();
                     var genrePkId = db.Genres.Count();
                     var addedArtist = new Artist()
                     {
+                        //if(db.Artists.)
                         ArtistId = artistPkId++,
                         Name = Convert.ToString(ArtistTextBox.Text)
                     };
@@ -96,6 +97,10 @@ namespace DannyMarkusLabb3
                     db.Add(addedAlbum);
                     db.Add(addedGenre);
                     db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Make sure all fields are filled", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -148,7 +153,28 @@ namespace DannyMarkusLabb3
 
         private void RemoveArtistButton_Click(object sender, EventArgs e)
         {
+            using (var db = new everyloopContext())
+            {
+                var removeItem = (from t in db.Tracks
+                                  join al in db.Albums
+                                  on t.AlbumId equals al.AlbumId
+                                  join ar in db.Artists
+                                  on al.ArtistId equals ar.ArtistId
+                                  join g in db.Genres
+                                  on t.GenreId equals g.GenreId
+                                  where ar.Name == ArtistTextBox.Text ||
+                                  al.Title == AlbumTextBox.Text ||
+                                  g.Name == GenreTextBox.Text
+                                  select new
+                                  {
+                                      Track = t.Name,
+                                      Album = al.Title,
+                                      Artist = ar.Name,
+                                      Genre = g.Name
+                                  }
+                              ).ToList();
 
+            }
         }
     }
 }
