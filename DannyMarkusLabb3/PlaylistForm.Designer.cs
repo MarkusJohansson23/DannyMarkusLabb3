@@ -44,8 +44,6 @@ namespace DannyMarkusLabb3
             this.TrackPlaylistBox = new System.Windows.Forms.ComboBox();
             this.AddTrackButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ComposerNameBox = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TrackNameBox = new System.Windows.Forms.TextBox();
             this.SearchTracksButton = new System.Windows.Forms.Button();
@@ -122,7 +120,6 @@ namespace DannyMarkusLabb3
             this.CurrentPlaylistBox.Name = "CurrentPlaylistBox";
             this.CurrentPlaylistBox.Size = new System.Drawing.Size(121, 23);
             this.CurrentPlaylistBox.TabIndex = 15;
-            
             // 
             // DeletePlaylistButton
             // 
@@ -156,8 +153,6 @@ namespace DannyMarkusLabb3
             this.groupBox1.Controls.Add(this.TrackPlaylistBox);
             this.groupBox1.Controls.Add(this.AddTrackButton);
             this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.ComposerNameBox);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.TrackNameBox);
             this.groupBox1.Location = new System.Drawing.Point(570, 12);
@@ -203,22 +198,6 @@ namespace DannyMarkusLabb3
             this.button1.Text = "Remove";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.RemoveTrackButton_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(113, 26);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 15);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Composer";
-            // 
-            // ComposerNameBox
-            // 
-            this.ComposerNameBox.Location = new System.Drawing.Point(113, 51);
-            this.ComposerNameBox.Name = "ComposerNameBox";
-            this.ComposerNameBox.Size = new System.Drawing.Size(100, 23);
-            this.ComposerNameBox.TabIndex = 2;
             // 
             // label3
             // 
@@ -306,8 +285,6 @@ namespace DannyMarkusLabb3
         private System.Windows.Forms.TextBox NewPlaylistNameBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox ComposerNameBox;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox TrackNameBox;
         private System.Windows.Forms.Button AddTrackButton;

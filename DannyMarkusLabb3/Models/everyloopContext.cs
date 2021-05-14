@@ -400,7 +400,8 @@ namespace DannyMarkusLabb3.Models
 
             modelBuilder.Entity<PlaylistTrack>(entity =>
             {
-                entity.HasNoKey();
+                //entity.HasNoKey();
+                entity.HasKey(e => new { e.PlaylistId, e.TrackId });
 
                 entity.ToTable("playlist_track", "music");
 

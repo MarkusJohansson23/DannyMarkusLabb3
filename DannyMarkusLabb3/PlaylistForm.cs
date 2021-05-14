@@ -26,6 +26,7 @@ namespace DannyMarkusLabb3
                 try
                 {
                     CurrentPlaylistBox.DataSource = db.Playlists.ToList();
+                    TrackPlaylistBox.DataSource = db.Playlists.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -34,7 +35,10 @@ namespace DannyMarkusLabb3
                 CurrentPlaylistBox.Text = "Playlist";
                 CurrentPlaylistBox.DisplayMember = "Name";
                 CurrentPlaylistBox.ValueMember = "PlaylistId";
-               
+
+                TrackPlaylistBox.Text = "Playlist";
+                TrackPlaylistBox.DisplayMember = "Name";
+                TrackPlaylistBox.ValueMember = "PlaylistId";
             }
         }
 
@@ -117,7 +121,8 @@ namespace DannyMarkusLabb3
         {
             using (var db = new everyloopContext())
             {
-                
+                var id = Convert.ToInt32(TrackPlaylistBox.SelectedValue);
+                //var 
                 //var playlistId = db.Playlists.Count() + 1;
                 //var newPlaylist = new Playlist()
                 //{
@@ -132,33 +137,56 @@ namespace DannyMarkusLabb3
         private void ViewTracksButton_Click(object sender, EventArgs e)
         {
             var id = Convert.ToInt32(CurrentPlaylistBox.SelectedValue);
+            var tracks = new List<Track>();
             
-            using (var context = new everyloopContext()) 
+            using (var db = new everyloopContext()) 
             {
-                var list = context.Playlists.Join(context.PlaylistTracks, entry => entry.PlaylistId,
+                var list = db.Playlists.Join
+                    (db.PlaylistTracks, entry => entry.PlaylistId,
                     entry2 => entry2.PlaylistId, (entry, entry2) => new
                     {
                         entry,
                         entry2
-                    }).Join(context.Tracks, p => p.entry2.TrackId, e => e.TrackId,
+                    }).Join(db.Tracks, p => p.entry2.TrackId, e => e.TrackId,
                     (p, e) => new
                     {
                         p,
-                        e
-
-
+                        e,
+                        Name = e.Name,
+                        Composor = e.Composer
                     }).Where(x => x.p.entry.PlaylistId == id).ToList();
-                   
-                
-
+                for (int i = 0; i < list.Count; i++)
+                {
+                    tracks.Add(list[i].e);
+                }
             }
-
-
+            var dataSource = tracks.Select(x => new
+            {
+                Name = x.Name,
+                Composor = x.Composer != null ? x.Composer : "No composer"
+            }).ToList();
+            DGVPlaylistForm.DataSource = dataSource;
         }
 
         private void RemoveTrackButton_Click(object sender, EventArgs e)
         {
-
+            using (var db = new everyloopContext())
+            {
+                var trackName = db.Tracks.SingleOrDefault(x => x.Name == TrackNameBox.Text);
+                if(trackName != null)
+                {
+                    var id = Convert.ToInt32(TrackPlaylistBox.SelectedValue);
+                    var trackNameId = trackName.TrackId;
+                    PlaylistTrack playlistTrack = db.PlaylistTracks.SingleOrDefault(x => x.TrackId == trackNameId && x.PlaylistId == id);
+                    db.PlaylistTracks.Remove(playlistTrack); //Sätt om värdet till null, raw sql db.contex.RawSql
+                    db.SaveChanges();
+                }
+                else
+                {
+                    MessageBox.Show("Could not find track", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                
+            }
         }
 
         private void AddTrackButton_Click(object sender, EventArgs e)
