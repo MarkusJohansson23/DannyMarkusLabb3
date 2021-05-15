@@ -1,14 +1,10 @@
 ﻿using DannyMarkusLabb3.Models;
-using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
 
 namespace DannyMarkusLabb3
 {
@@ -27,6 +23,9 @@ namespace DannyMarkusLabb3
                 {
                     CurrentPlaylistBox.DataSource = db.Playlists.ToList();
                     TrackPlaylistBox.DataSource = db.Playlists.ToList();
+
+                    DGVPlaylistForm.DataSource = db.Playlists.ToList();
+                    DGVTracks.DataSource = db.Tracks.ToList();
                 }
                 catch (Exception ex)
                 {
@@ -59,6 +58,7 @@ namespace DannyMarkusLabb3
 
         private void AddPlaylistButton_Click(object sender, EventArgs e)
         {
+            // TODO: Update TrackPlaylistBox and DGVPlaylistForm
             using (var db = new everyloopContext())
             {
                 var playlistId = db.Playlists.Count() + 1;
@@ -72,53 +72,37 @@ namespace DannyMarkusLabb3
             }
         }
 
-        private void DGVPlaylistForm_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void DGVPlaylistForm_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             using (var db = new everyloopContext())
             {
-                int index = e.RowIndex;
-                //måste kopplas ihop med CellContentClick = playlistId = tracks
-                var playlistTracks = (from t in db.Tracks
-                                      join pt in db.PlaylistTracks
-                                      on t.TrackId equals pt.TrackId
-                                      join p in db.Playlists
-                                      on pt.PlaylistId equals p.PlaylistId
-                                      select new
-                                      {
-                                          Name = t.Name,
-                                          Compser = t.Composer,
-                                          Length = t.Milliseconds,
-                                          AlbumId = t.AlbumId
-                                      }).ToList();
+                if (!int.TryParse(DGVPlaylistForm.Rows[e.RowIndex].Cells["PlaylistId"].Value.ToString(), out int playlistId))
+                {
+                    return;
+                }
 
-                DGVTracks.DataSource = playlistTracks;
+                var playlistTracks = db.PlaylistTracks
+                    .Where(x => x.PlaylistId == playlistId)
+                    .Include(x => x.Playlist)
+                    .Include(x => x.Track).ThenInclude(x => x.Album)
+                                          .ThenInclude(x => x.Artist)
+                    .Include(x => x.Track).ThenInclude(x => x.Genre);
+
+
+                DGVTracks.DataSource = playlistTracks.Select(x => new
+                {
+                    Name = x.Track.Name,
+                    Artist = x.Track.Album.Artist.Name ?? "No artist",
+                    Album = x.Track.Album.Title,
+                    Genre = x.Track.Genre.Name
+                }).ToList();
             }
-        }
-
-        private void DGVPlaylistForm_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //using (var db = new everyloopContext())
-            //{
-            //    //måste kopplas ihop med CellContentClick
-            //    var playlistTracks = (from t in db.Tracks
-            //                          join pt in db.PlaylistTracks
-            //                          on t.TrackId equals pt.TrackId
-            //                          join p in db.Playlists
-            //                          on pt.PlaylistId equals p.PlaylistId
-            //                          select new
-            //                          {
-            //                              Name = t.Name,
-            //                              Compser = t.Composer,
-            //                              Length = t.Milliseconds,
-            //                              AlbumId = t.AlbumId
-            //                          }).ToList();
-
-            //    DGVTracks.DataSource = playlistTracks;
-            //}
         }
 
         private void DeletePlaylistButton_Click(object sender, EventArgs e)
         {
+            // TODO: Update TrackPlaylistBox, DGVPlaylistForm and DGVTracks if applicable
+
             using (var db = new everyloopContext())
             {
                 var id = Convert.ToInt32(TrackPlaylistBox.SelectedValue);
@@ -137,68 +121,116 @@ namespace DannyMarkusLabb3
         private void ViewTracksButton_Click(object sender, EventArgs e)
         {
             var id = Convert.ToInt32(CurrentPlaylistBox.SelectedValue);
-            var tracks = new List<Track>();
+            var tracks = new List<(Track track, Artist artist)>();
             
             using (var db = new everyloopContext()) 
             {
-                var list = db.Playlists.Join
-                    (db.PlaylistTracks, entry => entry.PlaylistId,
-                    entry2 => entry2.PlaylistId, (entry, entry2) => new
-                    {
-                        entry,
-                        entry2
-                    }).Join(db.Tracks, p => p.entry2.TrackId, e => e.TrackId,
-                    (p, e) => new
-                    {
-                        p,
-                        e,
-                        Name = e.Name,
-                        Composor = e.Composer
-                    }).Where(x => x.p.entry.PlaylistId == id).ToList();
-                for (int i = 0; i < list.Count; i++)
+                var playlistTracks = db.PlaylistTracks
+                    .Where(x => x.PlaylistId == id)
+                    .Include(x => x.Playlist)
+                    .Include(x => x.Track).ThenInclude(x => x.Album)
+                                          .ThenInclude(x => x.Artist)
+                    .Include(x => x.Track).ThenInclude(x => x.Genre);
+                    
+
+                DGVPlaylistForm.DataSource = playlistTracks.Select(x => new
                 {
-                    tracks.Add(list[i].e);
-                }
+                    Name = x.Track.Name,
+                    Artist = x.Track.Album.Artist.Name ?? "No artist",
+                    Album = x.Track.Album.Title,
+                    Genre = x.Track.Genre.Name
+                }).ToList();
             }
-            var dataSource = tracks.Select(x => new
-            {
-                Name = x.Name,
-                Composor = x.Composer != null ? x.Composer : "No composer"
-            }).ToList();
-            DGVPlaylistForm.DataSource = dataSource;
         }
 
         private void RemoveTrackButton_Click(object sender, EventArgs e)
         {
+            // TODO: Update DGVTracks if applicable
+
             using (var db = new everyloopContext())
             {
-                var trackName = db.Tracks.SingleOrDefault(x => x.Name == TrackNameBox.Text);
-                if(trackName != null)
-                {
-                    var id = Convert.ToInt32(TrackPlaylistBox.SelectedValue);
-                    var trackNameId = trackName.TrackId;
-                    PlaylistTrack playlistTrack = db.PlaylistTracks.SingleOrDefault(x => x.TrackId == trackNameId && x.PlaylistId == id);
-                    db.PlaylistTracks.Remove(playlistTrack); //Sätt om värdet till null, raw sql db.contex.RawSql
-                    db.SaveChanges();
-                }
-                else
+                var trackName = db.Tracks.SingleOrDefault(x => x.Name.ToLower() == TrackNameBox.Text.ToLower());
+                if(trackName == null)
                 {
                     MessageBox.Show("Could not find track", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
-                
+
+                var id = Convert.ToInt32(TrackPlaylistBox.SelectedValue);
+                var trackNameId = trackName.TrackId;
+                PlaylistTrack playlistTrack = db.PlaylistTracks.SingleOrDefault(x => x.TrackId == trackNameId && x.PlaylistId == id);
+
+                if (playlistTrack == null)
+                {
+                    MessageBox.Show("Track already removed", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                db.PlaylistTracks.Remove(playlistTrack); //Sätt om värdet till null, raw sql db.contex.RawSql
+                db.SaveChanges();
             }
         }
 
         private void AddTrackButton_Click(object sender, EventArgs e)
         {
+            // TODO: Update DGVTracks if applicable
 
+            using (var db = new everyloopContext())
+            {
+                var trackName = db.Tracks.SingleOrDefault(x => x.Name.ToLower() == TrackNameBox.Text.ToLower());
+                if (trackName == null)
+                {
+                    MessageBox.Show("Could not find track", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
+                var id = Convert.ToInt32(TrackPlaylistBox.SelectedValue);
+                var trackNameId = trackName.TrackId;
+                PlaylistTrack playlistTrack = db.PlaylistTracks.SingleOrDefault(x => x.TrackId == trackNameId && x.PlaylistId == id);
+
+                if (playlistTrack != null)
+                {
+                    MessageBox.Show("Track already added", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                db.PlaylistTracks.Add(new PlaylistTrack { PlaylistId = id, TrackId = trackNameId });
+                db.SaveChanges();
+            }
         }
 
         private void SearchTracksButton_Click(object sender, EventArgs e)
         {
-
+             using (var db = new everyloopContext())
+            {
+                var tracks = (from t in db.Tracks
+                              where t.Name == SearchTracksBox.Text
+                              join al in db.Albums
+                              on t.AlbumId equals al.AlbumId
+                              join ar in db.Artists
+                              on al.ArtistId equals ar.ArtistId
+                              join g in db.Genres
+                              on t.GenreId equals g.GenreId
+                              select new
+                              {
+                                  Track = t.Name,
+                                  Album = al.Title,
+                                  Artist = ar.Name,
+                                  Genre = g.Name
+                              }).ToList();
+                try
+                {
+                    DGVTracks.DataSource = tracks;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(Convert.ToString(ex));
+                }
+            }
         }
 
-        
+        private void SearchTracksBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
