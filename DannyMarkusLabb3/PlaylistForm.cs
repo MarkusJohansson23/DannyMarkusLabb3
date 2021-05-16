@@ -58,15 +58,23 @@ namespace DannyMarkusLabb3
 
         private void AddPlaylistButton_Click(object sender, EventArgs e)
         {
-            // TODO: Update TrackPlaylistBox and DGVPlaylistForm
             using (var db = new everyloopContext())
             {
+                if (db.Playlists.Any(x => x.Name.ToLower() == NewPlaylistNameBox.Text.ToLower()))
+                {
+                    MessageBox.Show("Playlist already exist", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+
+                }
                 var playlistId = db.Playlists.Count() + 1;
                 var newPlaylist = new Playlist()
                 {
                     PlaylistId = playlistId,
                     Name = NewPlaylistNameBox.Text,
                 };
+
+
+
                 db.Add(newPlaylist);
                 db.SaveChanges();
                 UpdateForm();
@@ -102,8 +110,6 @@ namespace DannyMarkusLabb3
 
         private void DeletePlaylistButton_Click(object sender, EventArgs e)
         {
-            // TODO: Update TrackPlaylistBox, DGVPlaylistForm and DGVTracks if applicable
-
             using (var db = new everyloopContext())
             {
                 var item = CurrentPlaylistBox.SelectedValue;
@@ -153,8 +159,6 @@ namespace DannyMarkusLabb3
 
         private void RemoveTrackButton_Click(object sender, EventArgs e)
         {
-            // TODO: Update DGVTracks if applicable
-
             using (var db = new everyloopContext())
             {
                 var trackName = db.Tracks.SingleOrDefault(x => x.Name.ToLower() == TrackNameBox.Text.ToLower());
@@ -174,15 +178,13 @@ namespace DannyMarkusLabb3
                     return;
                 }
 
-                db.PlaylistTracks.Remove(playlistTrack); //Sätt om värdet till null, raw sql db.contex.RawSql
+                db.PlaylistTracks.Remove(playlistTrack); 
                 db.SaveChanges();
             }
         }
 
         private void AddTrackButton_Click(object sender, EventArgs e)
         {
-            // TODO: Update DGVTracks if applicable
-
             using (var db = new everyloopContext())
             {
                 var trackName = db.Tracks.SingleOrDefault(x => x.Name.ToLower() == TrackNameBox.Text.ToLower());
@@ -204,7 +206,7 @@ namespace DannyMarkusLabb3
 
                 db.PlaylistTracks.Add(new PlaylistTrack { PlaylistId = id, TrackId = trackNameId });
                 db.SaveChanges();
-                UpdateForm();
+                
             }
         }
 
@@ -278,6 +280,7 @@ namespace DannyMarkusLabb3
                 DGVTracks.DataSource = db.Tracks.ToList();
             }
         }
+       
     }
 
 }
