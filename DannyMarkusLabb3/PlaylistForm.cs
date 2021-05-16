@@ -69,6 +69,7 @@ namespace DannyMarkusLabb3
                 };
                 db.Add(newPlaylist);
                 db.SaveChanges();
+                UpdateForm();
             }
         }
 
@@ -108,22 +109,20 @@ namespace DannyMarkusLabb3
                 var item = CurrentPlaylistBox.SelectedValue;
                 var id = Convert.ToInt32(item);
 
-                var playlist = new Playlist()
-                {
-                    PlaylistId = id
-                };
-                var playlistTracks = new PlaylistTrack()
-                {
-                    PlaylistId = id,
-                };
-                //var playlistName = db.Playlists.SingleOrDefault(x => x.Name.ToLower() == CurrentPlaylistBox.Text.ToLower());
-                //var id = Convert.ToInt32(CurrentPlaylistBox.SelectedValue);
-                //var playlistNameId = playlistName.PlaylistId;
+                var playlist = db.Playlists.SingleOrDefault(x => x.PlaylistId == id);
+                var playlistTracks = db.PlaylistTracks.Where(x => x.PlaylistId == id);
 
-                //Playlist playlist = db.Playlists.SingleOrDefault(x => x.PlaylistId == playlistNameId);
+                if (playlist == null)
+                {
+                    MessageBox.Show("Playlist already removed", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+               
+
+                db.PlaylistTracks.RemoveRange(playlistTracks);
                 db.Playlists.Remove(playlist);
-                db.PlaylistTracks.Remove(playlistTracks);
                 db.SaveChanges();
+                UpdateForm();
             }
         }
 
@@ -205,6 +204,7 @@ namespace DannyMarkusLabb3
 
                 db.PlaylistTracks.Add(new PlaylistTrack { PlaylistId = id, TrackId = trackNameId });
                 db.SaveChanges();
+                UpdateForm();
             }
         }
 
@@ -213,7 +213,7 @@ namespace DannyMarkusLabb3
              using (var db = new everyloopContext())
             {
                 var tracks = (from t in db.Tracks
-                              where t.Name == SearchTracksBox.Text
+                              where t.Name.ToLower() == SearchTracksBox.Text
                               join al in db.Albums
                               on t.AlbumId equals al.AlbumId
                               join ar in db.Artists
@@ -267,5 +267,17 @@ namespace DannyMarkusLabb3
                 }
             }
         }
+        public void UpdateForm()
+        {
+            using (var db = new everyloopContext())
+            {
+                CurrentPlaylistBox.DataSource = db.Playlists.ToList();
+                TrackPlaylistBox.DataSource = db.Playlists.ToList();
+
+                DGVPlaylistForm.DataSource = db.Playlists.ToList();
+                DGVTracks.DataSource = db.Tracks.ToList();
+            }
+        }
     }
+
 }
