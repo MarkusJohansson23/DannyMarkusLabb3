@@ -25,7 +25,7 @@ namespace DannyMarkusLabb3
                     TrackPlaylistBox.DataSource = db.Playlists.ToList();
 
                     DGVPlaylistForm.DataSource = db.Playlists.ToList();
-                    DGVTracks.DataSource = db.Tracks.ToList();
+                    ShowAllTracks();
                 }
                 catch (Exception ex)
                 {
@@ -278,6 +278,32 @@ namespace DannyMarkusLabb3
 
                 DGVPlaylistForm.DataSource = db.Playlists.ToList();
                 DGVTracks.DataSource = db.Tracks.ToList();
+            }
+        }
+
+        public void ShowAllTracks() 
+        {
+            using (var db = new everyloopContext())
+            {
+                var tracks = (from t in db.Tracks
+                              join al in db.Albums
+                              on t.AlbumId equals al.AlbumId
+                              join ar in db.Artists
+                              on al.ArtistId equals ar.ArtistId
+                              join g in db.Genres
+                              on t.GenreId equals g.GenreId
+                              select new
+                              {
+                                  Track = t.Name,
+                                  Album = al.Title,
+                                  Artist = ar.Name,
+                                  Genre = g.Name
+                              }).ToList();
+
+
+                DGVTracks.DataSource = tracks;
+
+
             }
         }
        
