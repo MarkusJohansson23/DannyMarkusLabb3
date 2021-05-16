@@ -105,16 +105,25 @@ namespace DannyMarkusLabb3
 
             using (var db = new everyloopContext())
             {
-                var id = Convert.ToInt32(TrackPlaylistBox.SelectedValue);
-                //var 
-                //var playlistId = db.Playlists.Count() + 1;
-                //var newPlaylist = new Playlist()
-                //{
-                //    PlaylistId = playlistId,
-                //    Name = NewPlaylistNameBox.Text,
-                //};
-                //db.Add(newPlaylist);
-                //db.SaveChanges();
+                var item = CurrentPlaylistBox.SelectedValue;
+                var id = Convert.ToInt32(item);
+
+                var playlist = new Playlist()
+                {
+                    PlaylistId = id
+                };
+                var playlistTracks = new PlaylistTrack()
+                {
+                    PlaylistId = id,
+                };
+                //var playlistName = db.Playlists.SingleOrDefault(x => x.Name.ToLower() == CurrentPlaylistBox.Text.ToLower());
+                //var id = Convert.ToInt32(CurrentPlaylistBox.SelectedValue);
+                //var playlistNameId = playlistName.PlaylistId;
+
+                //Playlist playlist = db.Playlists.SingleOrDefault(x => x.PlaylistId == playlistNameId);
+                db.Playlists.Remove(playlist);
+                db.PlaylistTracks.Remove(playlistTracks);
+                db.SaveChanges();
             }
         }
 
@@ -181,6 +190,7 @@ namespace DannyMarkusLabb3
                 if (trackName == null)
                 {
                     MessageBox.Show("Could not find track", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
                 }
 
                 var id = Convert.ToInt32(TrackPlaylistBox.SelectedValue);
@@ -228,9 +238,34 @@ namespace DannyMarkusLabb3
             }
         }
 
-        private void SearchTracksBox_TextChanged(object sender, EventArgs e)
+        private void ViewAllTracksButton_Click(object sender, EventArgs e)
         {
+            using (var db = new everyloopContext())
+            {
+                var tracks = (from t in db.Tracks
+                              join al in db.Albums
+                              on t.AlbumId equals al.AlbumId
+                              join ar in db.Artists
+                              on al.ArtistId equals ar.ArtistId
+                              join g in db.Genres
+                              on t.GenreId equals g.GenreId
+                              select new
+                              {
+                                  Track = t.Name,
+                                  Album = al.Title,
+                                  Artist = ar.Name,
+                                  Genre = g.Name
+                              }).ToList();
+                try
+                {
+                    DGVTracks.DataSource = tracks;
+                }
+                catch (Exception)
+                {
 
+                    MessageBox.Show("Could not find data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
