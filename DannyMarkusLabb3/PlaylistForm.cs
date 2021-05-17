@@ -274,7 +274,6 @@ namespace DannyMarkusLabb3
                 TrackPlaylistBox.DataSource = db.Playlists.ToList();
 
                 DGVPlaylistForm.DataSource = db.Playlists.ToList();
-                DGVTracks.DataSource = db.Tracks.ToList();
             }
         }
 
