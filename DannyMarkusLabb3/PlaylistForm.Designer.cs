@@ -30,7 +30,6 @@ namespace DannyMarkusLabb3
         private void InitializeComponent()
         {
             this.DGVPlaylistForm = new System.Windows.Forms.DataGridView();
-            this.ViewTracksButton = new System.Windows.Forms.Button();
             this.AddPlaylistButton = new System.Windows.Forms.Button();
             this.ViewPlaylistsbutton = new System.Windows.Forms.Button();
             this.DGVTracks = new System.Windows.Forms.DataGridView();
@@ -58,7 +57,7 @@ namespace DannyMarkusLabb3
             // DGVPlaylistForm
             // 
             this.DGVPlaylistForm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVPlaylistForm.Location = new System.Drawing.Point(12, 215);
+            this.DGVPlaylistForm.Location = new System.Drawing.Point(12, 12);
             this.DGVPlaylistForm.Name = "DGVPlaylistForm";
             this.DGVPlaylistForm.RowHeadersWidth = 51;
             this.DGVPlaylistForm.RowTemplate.Height = 25;
@@ -66,19 +65,9 @@ namespace DannyMarkusLabb3
             this.DGVPlaylistForm.TabIndex = 0;
             this.DGVPlaylistForm.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.DGVPlaylistForm_CellMouseClick);
             // 
-            // ViewTracksButton
-            // 
-            this.ViewTracksButton.Location = new System.Drawing.Point(155, 35);
-            this.ViewTracksButton.Name = "ViewTracksButton";
-            this.ViewTracksButton.Size = new System.Drawing.Size(87, 23);
-            this.ViewTracksButton.TabIndex = 2;
-            this.ViewTracksButton.Text = "View Tracks";
-            this.ViewTracksButton.UseVisualStyleBackColor = true;
-            this.ViewTracksButton.Click += new System.EventHandler(this.ViewTracksButton_Click);
-            // 
             // AddPlaylistButton
             // 
-            this.AddPlaylistButton.Location = new System.Drawing.Point(155, 93);
+            this.AddPlaylistButton.Location = new System.Drawing.Point(153, 432);
             this.AddPlaylistButton.Name = "AddPlaylistButton";
             this.AddPlaylistButton.Size = new System.Drawing.Size(87, 23);
             this.AddPlaylistButton.TabIndex = 3;
@@ -88,18 +77,18 @@ namespace DannyMarkusLabb3
             // 
             // ViewPlaylistsbutton
             // 
-            this.ViewPlaylistsbutton.Location = new System.Drawing.Point(12, 186);
+            this.ViewPlaylistsbutton.Location = new System.Drawing.Point(322, 352);
             this.ViewPlaylistsbutton.Name = "ViewPlaylistsbutton";
-            this.ViewPlaylistsbutton.Size = new System.Drawing.Size(109, 23);
+            this.ViewPlaylistsbutton.Size = new System.Drawing.Size(101, 23);
             this.ViewPlaylistsbutton.TabIndex = 7;
-            this.ViewPlaylistsbutton.Text = "View Playlists";
+            this.ViewPlaylistsbutton.Text = "Update Playlists";
             this.ViewPlaylistsbutton.UseVisualStyleBackColor = true;
             this.ViewPlaylistsbutton.Click += new System.EventHandler(this.ViewPlaylistsbutton_Click);
             // 
             // DGVTracks
             // 
             this.DGVTracks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.DGVTracks.Location = new System.Drawing.Point(429, 215);
+            this.DGVTracks.Location = new System.Drawing.Point(429, 12);
             this.DGVTracks.Name = "DGVTracks";
             this.DGVTracks.RowHeadersWidth = 51;
             this.DGVTracks.RowTemplate.Height = 25;
@@ -109,23 +98,23 @@ namespace DannyMarkusLabb3
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 18);
+            this.label2.Location = new System.Drawing.Point(12, 356);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(87, 15);
             this.label2.TabIndex = 11;
-            this.label2.Text = "Current playlist";
+            this.label2.Text = "Choose playlist";
             // 
             // CurrentPlaylistBox
             // 
             this.CurrentPlaylistBox.FormattingEnabled = true;
-            this.CurrentPlaylistBox.Location = new System.Drawing.Point(12, 36);
+            this.CurrentPlaylistBox.Location = new System.Drawing.Point(12, 374);
             this.CurrentPlaylistBox.Name = "CurrentPlaylistBox";
             this.CurrentPlaylistBox.Size = new System.Drawing.Size(121, 23);
             this.CurrentPlaylistBox.TabIndex = 15;
             // 
             // DeletePlaylistButton
             // 
-            this.DeletePlaylistButton.Location = new System.Drawing.Point(155, 64);
+            this.DeletePlaylistButton.Location = new System.Drawing.Point(153, 374);
             this.DeletePlaylistButton.Name = "DeletePlaylistButton";
             this.DeletePlaylistButton.Size = new System.Drawing.Size(87, 23);
             this.DeletePlaylistButton.TabIndex = 16;
@@ -135,7 +124,7 @@ namespace DannyMarkusLabb3
             // 
             // NewPlaylistNameBox
             // 
-            this.NewPlaylistNameBox.Location = new System.Drawing.Point(12, 96);
+            this.NewPlaylistNameBox.Location = new System.Drawing.Point(12, 432);
             this.NewPlaylistNameBox.Name = "NewPlaylistNameBox";
             this.NewPlaylistNameBox.Size = new System.Drawing.Size(121, 23);
             this.NewPlaylistNameBox.TabIndex = 17;
@@ -143,7 +132,7 @@ namespace DannyMarkusLabb3
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 72);
+            this.label1.Location = new System.Drawing.Point(12, 414);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(106, 15);
             this.label1.TabIndex = 18;
@@ -157,7 +146,7 @@ namespace DannyMarkusLabb3
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.TrackNameBox);
-            this.groupBox1.Location = new System.Drawing.Point(570, 12);
+            this.groupBox1.Location = new System.Drawing.Point(516, 416);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(315, 133);
             this.groupBox1.TabIndex = 19;
@@ -212,14 +201,14 @@ namespace DannyMarkusLabb3
             // 
             // TrackNameBox
             // 
-            this.TrackNameBox.Location = new System.Drawing.Point(7, 51);
+            this.TrackNameBox.Location = new System.Drawing.Point(6, 44);
             this.TrackNameBox.Name = "TrackNameBox";
-            this.TrackNameBox.Size = new System.Drawing.Size(100, 23);
+            this.TrackNameBox.Size = new System.Drawing.Size(121, 23);
             this.TrackNameBox.TabIndex = 0;
             // 
             // SearchTracksButton
             // 
-            this.SearchTracksButton.Location = new System.Drawing.Point(535, 185);
+            this.SearchTracksButton.Location = new System.Drawing.Point(622, 373);
             this.SearchTracksButton.Name = "SearchTracksButton";
             this.SearchTracksButton.Size = new System.Drawing.Size(75, 23);
             this.SearchTracksButton.TabIndex = 20;
@@ -229,7 +218,7 @@ namespace DannyMarkusLabb3
             // 
             // SearchTracksBox
             // 
-            this.SearchTracksBox.Location = new System.Drawing.Point(429, 186);
+            this.SearchTracksBox.Location = new System.Drawing.Point(516, 374);
             this.SearchTracksBox.Name = "SearchTracksBox";
             this.SearchTracksBox.Size = new System.Drawing.Size(100, 23);
             this.SearchTracksBox.TabIndex = 21;
@@ -237,7 +226,7 @@ namespace DannyMarkusLabb3
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(429, 165);
+            this.label6.Location = new System.Drawing.Point(516, 353);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(71, 15);
             this.label6.TabIndex = 22;
@@ -245,7 +234,7 @@ namespace DannyMarkusLabb3
             // 
             // ViewAllTracksButton
             // 
-            this.ViewAllTracksButton.Location = new System.Drawing.Point(792, 185);
+            this.ViewAllTracksButton.Location = new System.Drawing.Point(792, 352);
             this.ViewAllTracksButton.Name = "ViewAllTracksButton";
             this.ViewAllTracksButton.Size = new System.Drawing.Size(93, 23);
             this.ViewAllTracksButton.TabIndex = 23;
@@ -271,7 +260,6 @@ namespace DannyMarkusLabb3
             this.Controls.Add(this.DGVTracks);
             this.Controls.Add(this.ViewPlaylistsbutton);
             this.Controls.Add(this.AddPlaylistButton);
-            this.Controls.Add(this.ViewTracksButton);
             this.Controls.Add(this.DGVPlaylistForm);
             this.Name = "PlaylistForm";
             this.Text = "PlaylistForm";
@@ -288,7 +276,6 @@ namespace DannyMarkusLabb3
         #endregion
 
         private System.Windows.Forms.DataGridView DGVPlaylistForm;
-        private System.Windows.Forms.Button ViewTracksButton;
         private System.Windows.Forms.Button AddPlaylistButton;
         private System.Windows.Forms.Button ViewPlaylistsbutton;
         private System.Windows.Forms.DataGridView DGVTracks;

@@ -66,14 +66,12 @@ namespace DannyMarkusLabb3
                     return;
 
                 }
-                var playlistId = db.Playlists.Count() + 1;
+                var plId = db.Playlists.Max(x => x.PlaylistId) + 1;
                 var newPlaylist = new Playlist()
                 {
-                    PlaylistId = playlistId,
+                    PlaylistId = plId,
                     Name = NewPlaylistNameBox.Text,
                 };
-
-
 
                 db.Add(newPlaylist);
                 db.SaveChanges();
@@ -123,7 +121,6 @@ namespace DannyMarkusLabb3
                     MessageBox.Show("Playlist already removed", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-               
 
                 db.PlaylistTracks.RemoveRange(playlistTracks);
                 db.Playlists.Remove(playlist);
